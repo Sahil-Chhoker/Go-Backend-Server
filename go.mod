@@ -1,4 +1,4 @@
-module github.com/Sahil-Chhoker/rssagg
+module github.com/sahil-chhoker/Go-Backend-Server
 
 go 1.21.6
 
