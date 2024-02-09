@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/sahil-chhoker/Go-Backend-Server/internal/auth"
 	"github.com/sahil-chhoker/Go-Backend-Server/internal/database"
 )
 
@@ -35,5 +36,15 @@ func (apiCfg *apiConfing) handlerCreateUser(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
-	respondWithJSON(w, 200, databaseUserToUser(user))
+	respondWithJSON(w, 201, databaseUserToUser(user))
+}
+
+func (apiCfg *apiConfing) handlerGetUser(w http.ResponseWriter, r *http.Request) {
+	apiKey, err := auth.GetAPIKey(r.Header)
+	if err != nil {
+		respondWithError(w, 403, fmt.Sprintf("Auth error : %v", err))
+		return
+	}
+
+	apiCfg.DB.GetUserByAPIKey(r.Context(), apiKey)
 }
