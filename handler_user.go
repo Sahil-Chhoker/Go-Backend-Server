@@ -47,4 +47,12 @@ func (apiCfg *apiConfing) handlerGetUser(w http.ResponseWriter, r *http.Request)
 	}
 
 	apiCfg.DB.GetUserByAPIKey(r.Context(), apiKey)
+
+	user, err := apiCfg.DB.GetUserByAPIKey(r.Context(), apiKey)
+	if err != nil {
+		respondWithError(w, 400, fmt.Sprintf("Couldn't get user: %v", err))
+		return
+	}
+
+	respondWithJSON(w, 200, databaseUserToUser(user))
 }
