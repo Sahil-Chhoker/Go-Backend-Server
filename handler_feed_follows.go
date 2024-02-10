@@ -12,7 +12,7 @@ import (
 
 func (apiCfg *apiConfing) handlerCreateFeedFollow(w http.ResponseWriter, r *http.Request, user database.User) {
 	type parameters struct {
-		FeedID uuid.UUID `json:"url"`
+		FeedID uuid.UUID `json:"feed_id"`
 	}
 
 	decoder := json.NewDecoder(r.Body)
