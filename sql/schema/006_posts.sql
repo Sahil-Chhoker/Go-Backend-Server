@@ -11,4 +11,4 @@ CREATE TABLE posts(
 );
 
 -- +goose Down
-DROP TABLE users;
+DROP TABLE posts;
