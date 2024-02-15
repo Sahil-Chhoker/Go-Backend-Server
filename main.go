@@ -80,6 +80,6 @@ func main() {
 	log.Printf("Serving on port: %s\n", portString)
 	err = srv.ListenAndServe()
 	if err != nil {
-		log.Fatal(err)
+		// log.Fatal(err)
 	}
 }
